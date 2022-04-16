@@ -60,7 +60,7 @@ const SignInSide = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "/api/auth/login",
+        "https://gastro-mombasa.herokuapp.com/api/auth/login",
         { name, password },
         config
       );
