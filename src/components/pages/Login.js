@@ -67,8 +67,8 @@ const SignInSide = ({ history }) => {
 
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("name", data.name);
-      history.go(0)
       history.push("/scheduler");
+      history.go(0)
 
     } catch (error) {
       setError(error.response.data.error);
