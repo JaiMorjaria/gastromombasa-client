@@ -12,8 +12,8 @@ import {
   Avatar
 } from '@material-ui/core';
 import DrawerComponent from './DrawerComponent';
-import { NavLink, useHistory, Link} from 'react-router-dom';
-import logo from '../../../images/GDC_LOGO.jpg'
+import { NavLink, useNavigate, Link} from 'react-router-dom';
+import logo from '../../../images/GDC_LOGO.png'
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1rem',
     },
   },
-  acount: {
+  red: {
+    color: 'primary'
   },
   tabsContainer: {
     marginLeft: 'auto',
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '400px',
+    width: '600px',
     alignItems: 'center',
     fontFamily: 'Montserrat'
   },
@@ -54,7 +55,7 @@ const Navbar = () => {
   
   const isMatch = useMediaQuery(theme.breakpoints.down('xs'));
 
-  const history = useHistory(); 
+  const navigate = useNavigate(); 
 
   const [user, setUser] = useState()
 
@@ -73,7 +74,7 @@ const Navbar = () => {
   const logout = () => {  
     setUser(null);
     localStorage.clear()
-    history.push("/login")
+    navigate("/login")
   };
 
   return (
@@ -87,19 +88,25 @@ const Navbar = () => {
           ) : (
             <>
             {user? (
-            <div style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              alignItems: 'flex-end',
-              width: '400vh'
-              }}>
+            
+            <div>
               <div className={classes.profile}>
                 <Avatar className={classes.red} alt={user}>{user.charAt(0)}</Avatar>
                 <Typography>{user}</Typography>
+                <NavLink to={'/blog/posts'} style={{textDecoration: 'none', color: 'primary'}}>
+                  <Typography>
+                    Blog
+                  </Typography>
+                </NavLink>
+                <NavLink to={'/blog/create-post'} style={{textDecoration: 'none', color: 'primary'}}>
+                  <Typography>
+                    Create New Post
+                  </Typography>
+                </NavLink>
                 <Button variant="contained"  className={classes.logout} color="primary" onClick={logout}>Logout</Button>
               </div>
             </div>
-            ) : (
+            ) : ( 
               <> 
             <NavLink to={'/'} activeStyle={{textDecoration: 'none', color: 'primary'}}>
               <Typography>
@@ -110,6 +117,13 @@ const Navbar = () => {
               className={classes.tabsContainer}
               >
                 <div>{user}</div>
+              <Tab 
+                component = {Link} to='/blog/posts'
+                disableRipple
+                textDecoration='none'
+                label='Blog'
+              />
+
               <Tab
                 component = {Link} to='/about'
                 disableRipple

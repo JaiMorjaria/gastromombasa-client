@@ -5,6 +5,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import {PasswordField} from 'material-ui-password'
 import axios from "axios";
+import {useNavigate} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,16 +39,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignInSide = ({ history }) => {
+const SignInSide = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const classes = useStyles();
+  const navigate = useNavigate()
+  const authToken = localStorage.getItem("authToken")
+
   useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      history.push("/scheduler");
+    if (authToken) {
+      navigate("/scheduler")
     }
-  }, [history]);
+  }, [authToken, navigate]);
 
   const loginHandler = async (e) => {
     e.preventDefault(); 
@@ -55,6 +59,7 @@ const SignInSide = ({ history }) => {
     const config = {
       header: {
         "Content-Type": "application/json",
+        "access-control-allow-origin": "*"
       },
     };
 
@@ -67,10 +72,11 @@ const SignInSide = ({ history }) => {
 
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("name", data.name);
-      history.push("/scheduler");
-      history.go(0)
+      navigate("/scheduler")
+      navigate(0)
 
     } catch (error) {
+      console.log("Err:", error.response.data.error)
       setError(error.response.data.error);
       setTimeout(() => {
         setError("");

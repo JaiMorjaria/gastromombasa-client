@@ -13,7 +13,7 @@ import Select from './Select/index';
 import Checkbox from './Checkbox/index';
 import Button from './Button/index';
 import choices from './data/data.json'
-import { useHistory} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -51,7 +51,7 @@ const FORM_VALIDATION = Yup.object().shape({
 
 const FormComplete = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (   
     <>
@@ -79,20 +79,12 @@ const FormComplete = () => {
                     }
                   }
 
-                  await axios
-                  .post('https://gastro-mombasa.herokuapp.com/api/patients/', data, axiosConfig)
-                      .then((response) => {
-                          history.push({
-                            pathname: '/success',
-                            state: { submit: true }
-                          });
-                   })
-                   .catch((error) => {
-                     history.push({
-                       pathname: '/failure',
-                       state: { submit: true }
-                     });
-                   });
+
+                  await axios.post('https://gastro-mombasa.herokuapp.com/api/patients/', data, axiosConfig).then((response) => {
+                          navigate("/success")
+                   }).catch((error) => {
+                      navigate("/failure")
+                  })
                 }}
               >
                 <Form>
@@ -164,7 +156,6 @@ const FormComplete = () => {
 
                 </Form>
               </Formik>
-
             </div>
           </Container>
         </Grid>

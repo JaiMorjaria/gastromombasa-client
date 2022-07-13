@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 import axios from 'axios'
 import MaterialTable from 'material-table'
 import {Checkbox} from '@material-ui/core'
+import {format} from "date-fns"
 
 
 const columns = [
@@ -36,6 +37,7 @@ const columns = [
     title: 'Date',
     type: 'date',
     validate: rowData => rowData.date === undefined || rowData.date === "" ? "Required" : true,
+    render: rowData => format(new Date(rowData.date), "dd/MM/yyyy"),
     defaultSort: 'asc',
   }, 
   {
@@ -43,6 +45,7 @@ const columns = [
     title:'Time',
     type: 'time',
     validate: rowData => rowData.time === undefined || rowData.time === "" ? "Required" : true,
+    render: rowData => format(new Date(rowData.time), "HH:mm a"),
     defaultSort: 'asc',
     filtering: false 
   }
@@ -126,7 +129,7 @@ const Scheduler = () => {
                   .then(resp => {
                     fetchData()
                     resolve()
-                  },2000)
+                  },[])
                   
               }),
               onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
@@ -141,7 +144,7 @@ const Scheduler = () => {
                   .then(resp => {
                     fetchData()
                     resolve()
-                  },2000)
+                  },[])
               }),
               onRowDelete: (oldData) => new Promise((resolve, reject) => {
                 fetch(url + "/" + oldData._id, {
@@ -154,7 +157,7 @@ const Scheduler = () => {
                   .then(resp => {
                     fetchData()
                     resolve()
-                  })
+                  }, [])
               }),
             }}
           />

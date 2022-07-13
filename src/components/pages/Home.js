@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
-
   },
   title: {
     color: '#fff',
@@ -67,7 +66,7 @@ export default function Home() {
         collapsedSize={0}
       >
         <div className={classes.container}>
-          <h1 style={{color: '#fff', fontSize: isMatch ? '2rem': '3rem',}}>
+          <h1 style={{color: '#fff', fontSize: isMatch ? '2rem': '3rem', textShadow: "black 0 5px",}}>
             World class gastroenterology services in the heart of Mombasa.
              
           </h1>
@@ -101,9 +100,9 @@ export default function Home() {
               fontSize: '1rem', 
               whiteSpace: 'nowrap', 
               borderRadius: '20px',
-              color: hover1 ? "white" : "black",
-              borderColor: hover1 ? "#f36e61" : "#32e293",
-              backgroundColor: hover1 ? "#f36e61" : "#32e293",
+              color: hover1 ? "black" : "white",
+              borderColor: hover1 ? "#32e293" : "#f36e61",
+              backgroundColor: hover1 ? "#32e293" : "#f36e61",
               }}
               onMouseEnter={() => setHover1(true)}
               onMouseLeave={() => setHover1(false)} 

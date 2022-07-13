@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css'
 import Navbar from './components/pages/routing/Navbar';
 import Home from './components/pages/Home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router,  Routes, Route } from 'react-router-dom';
 import About from './components/pages/About';
 import Login from './components/pages/Login';
 import Scheduler from './components/pages/Scheduler';
@@ -11,6 +11,9 @@ import {ThemeProvider, createTheme} from '@material-ui/core'
 import PrivateRoute from './components/pages/routing/PrivateRoute';
 import Success from './components/pages/routing/Success'
 import Failure from './components/pages/routing/Failure'
+import CreatePost from './components/pages/CreatePost'
+import SinglePost from './components/pages/SinglePost'
+import Blog from './components/pages/Blog';
 
 const theme = createTheme ({
   palette: {
@@ -45,15 +48,18 @@ function App() {
     <ThemeProvider theme = {theme}>
       <Router>
         <Navbar />
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/login' component={Login} />
-          <Route path='/appointment' component={Appointment} />
-          <PrivateRoute path ='/scheduler' component = {Scheduler}/>
-          <Route path='/success' component={Success}></Route>
-          <Route path='/failure' component={Failure}></Route>
-        </Switch> 
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/appointment' element={<Appointment />}/>
+          <PrivateRoute path ='/scheduler' element = {<Scheduler />}/>
+          <PrivateRoute path='/blog/create-post' element={<CreatePost />} />
+          <Route path='/success' element={<Success />} />
+          <Route path='/failure' element={<Failure />} />
+          <Route path='/blog/posts' element={<Blog />} />
+          <Route path='/blog/posts/:postId' element={<SinglePost />} />
+        </Routes>
       </Router>
     </ThemeProvider>
   );
