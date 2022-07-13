@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("/api/posts/");
+      const res = await axios.get("https://gastro-mombasa.herokuapp.com/api/posts");
       setPosts(res.data);
     };
     fetchPosts();
