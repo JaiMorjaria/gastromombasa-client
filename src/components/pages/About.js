@@ -18,9 +18,12 @@ function About() {
       data: ["Gastroenterology society of Kenya", "American Gastroenterology Association", "Kenya Association of Physicians"]
     },
     { title: "Gastrointestinal conditions", 
-      text: "These are disease conditions that present themselves with symptoms such as bloating, heartburn, abdominal pain, constipation, jaundice etc. Some of the gastrointestinal diseases I:",
+      text: "These are disease conditions that present themselves with symptoms such as bloating, heartburn, abdominal pain, constipation, jaundice etc. Some of the gastrointestinal diseases I treat include:",
       data: ["Peptic ulcers", "Irritable bowel syndrome", "Inflammatory bowel disease", "Colon cancer", "Hepatitis"]
-    }
+    },
+    {title: "Location",
+     text: "The clinic is located at The Mombasa Hospital, Suite 5 and is open from 9pm to 5pm."
+  }
   ];
   
 
