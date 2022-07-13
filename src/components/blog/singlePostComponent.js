@@ -16,7 +16,7 @@ export default function SinglePostComponent () {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/api/posts/" + path);
+      const res = await axios.get("https://gastro-mombasa.herokuapp.com/api/posts/" + path);
       if(res) {
         setPost(res.data);
         setTitle(res.data.title);
@@ -32,7 +32,7 @@ export default function SinglePostComponent () {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/posts/${post._id}`, {
+      await axios.delete(`https://gastro-mombasa.herokuapp.com/api/posts/${post._id}`, {
         data: { username: username },
       });
       window.location.replace("/blog/posts");
@@ -41,7 +41,7 @@ export default function SinglePostComponent () {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/api/posts/${post._id}`, {
+      await axios.put(`https://gastro-mombasa.herokuapp.com/api/posts/${post._id}`, {
         username,
         title,
         desc,
