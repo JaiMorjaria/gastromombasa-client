@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Collapse, useMediaQuery, useTheme } from '@material-ui/core';
-import Background from '../../images/img-home.jpg'
+import Background from '../../images/img-2.jpg'
 import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +13,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${Background})`,
     boxShadow: 'inset 0 0 0 1000px rgba(0, 0, 0, 0.2)',
     backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
     },
   appbar: {
     background: 'none',

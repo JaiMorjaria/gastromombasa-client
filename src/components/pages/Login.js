@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import BackgroundLogin from '../../images/img-2.jpg';
+import BackgroundLogin from '../../images/img-home.jpg';
 import {Box, Grid, Typography, Avatar, Button, CssBaseline, TextField, Paper, FormHelperText } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
