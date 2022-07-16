@@ -30,7 +30,7 @@ function About() {
   const Paragraph = (props) => {
     return (
       <div>
-        <h2 style={{ color: "red" }}>{props.title}</h2>
+        <h2 style={{ color: "#f36e61" }}>{props.title}</h2>
         <hr />
         <div>{props.text}</div>
         {typeof props.data !== "undefined"
@@ -46,33 +46,16 @@ function About() {
       <div style={{ display: "flex", justifyContent: "center", alignItems: 'center', height: '100vh' }}>
         <div style={{ textAlign: "center", paddingTop: 100}}>
             <div style={{paddingLeft: 80}}>
-              <h1 style={{whiteSpace: 'nowrap'}}>About Dr. Firoz Alimohamed</h1>
+              <h1 style={{whiteSpace: 'nowrap', paddingBottom: '10px'}}>About Dr. Firoz Alimohamed</h1>
             </div>
-          <div style={{ display: "flex", paddingTop: '30px'}}>
-            <Paper elevation={6} style={{justifyContent: 'center', alignItems: 'center', height: '700px', width: isMatch ? '0px': 'auto', paddingRight: isMatch ? 0 : 50}}>
-            <div style={{ display: "flex", flexDirection: isMatch ? "column" : "row" }}>
-              <div
-                style={{display: 'flex', width: 550, height: 700, overflow:"hidden"}}
-              >
-                <img src = {Firoz} alt="Dr. Firoz"/>
-              </div>
-              <div style={{padding: 5}} />
-
-              <div
-                style={{
-                  width: isMatch ? 400 : 700,
-                  height: 400,
-                  textAlign: isMatch ? "left": "justify",
-                  paddingTop: 25,
-                  paddingLeft: 100
-                }}
-              >
-                {data.map(function (para) {
-                  console.log(para);
+            <div style={{ display: "flex", flexDirection: isMatch ? "column" : "row", alignItems: 'center', justifyContent:'center', width: isMatch ? 600 : 1000, gap:30}}>
+              <img src = {Firoz} alt="Dr. Firoz"/>
+              <div style={{ display: 'flex', flexDirection: 'column'}}>
+                {data.map((para) => {
                   return (
                     <div
                       style={{  
-                        
+                        textAlign: 'justify'
                       }}
                     > 
                     <Typography>
@@ -87,11 +70,9 @@ function About() {
                   );
                 })}
               </div>
+              </div>
             </div>
-          </Paper>
           </div>
-        </div>  
-      </div>
     );
   }
 

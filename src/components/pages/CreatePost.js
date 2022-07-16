@@ -6,7 +6,10 @@ import Write from '../blog/writePost';
 function CreatePost() {
 
   return (
-    <Write />
+    <div>
+      <head>Create New Post</head>
+      <Write />
+    </div>
   )
 }
 
