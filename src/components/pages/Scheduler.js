@@ -37,7 +37,16 @@ const columns = [
     title: 'Date',
     type: 'date',
     validate: rowData => rowData.date === undefined || rowData.date === "" ? "Required" : true,
-    render: rowData => format(new Date(rowData.date), "dd/MM/yyyy"),
+    render: rowData => { 
+      try {
+        rowData.date === undefined || rowData.date === "Not added yet" ? rowData.date : format(new Date(rowData.date), "dd/MM/yyyy")
+      }
+      catch(e) {
+        console.log(rowData.date) 
+        console.log(e)
+      }
+    
+  },
     defaultSort: 'asc',
   }, 
   {
@@ -45,7 +54,7 @@ const columns = [
     title:'Time',
     type: 'time',
     validate: rowData => rowData.time === undefined || rowData.time === "" ? "Required" : true,
-    render: rowData => format(new Date(rowData.time), "HH:mm a"),
+    render: rowData => rowData.date === undefined || rowData.date === "Not added yet" ? rowData.date : format(new Date(rowData.time), "HH:mm a"),
     defaultSort: 'asc',
     filtering: false 
   }
@@ -110,7 +119,7 @@ const Scheduler = () => {
                 icon:()=><Checkbox
                 checked={filter}
                 onChange={handleChange}
-                inputProps={{ 'aria-label': 'pri  mary checkbox' }}
+                inputProps={{ 'aria-label': 'primary checkbox' }}
               />,
               tooltip:"Hide/Show Filter option",
               isFreeAction:true
