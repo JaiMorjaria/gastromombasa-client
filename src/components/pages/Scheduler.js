@@ -3,7 +3,10 @@ import axios from 'axios'
 import MaterialTable from 'material-table'
 import {Checkbox} from '@material-ui/core'
 import {format} from "date-fns"
-
+import {MuiPickersUtilsProvider} from '@material-ui/pickers'
+import { DatePicker } from "@material-ui/pickers";
+import 'date-fns'
+import DateFnsUtils from "@date-io/date-fns";
 
 const columns = [
 
@@ -39,11 +42,10 @@ const columns = [
     validate: rowData => rowData.date === undefined || rowData.date === "" ? "Required" : true,
     render: rowData => { 
       try {
-        rowData.date === undefined || rowData.date === "Not added yet" ? rowData.date : format(new Date(rowData.date), "dd/MM/yyyy")
+        return rowData.date === undefined || rowData.date === "Not added yet" ? rowData.date : format(new Date(rowData.date), "dd/MM/yyyy")
       }
       catch(e) {
         console.log(rowData.date) 
-        console.log(e)
       }
     
   },
@@ -56,8 +58,9 @@ const columns = [
     validate: rowData => rowData.time === undefined || rowData.time === "" ? "Required" : true,
     render: rowData => rowData.date === undefined || rowData.date === "Not added yet" ? rowData.date : format(new Date(rowData.time), "HH:mm a"),
     defaultSort: 'asc',
-    filtering: false 
+    filtering: false,
   }
+
 ];
 
 
@@ -98,22 +101,7 @@ const Scheduler = () => {
             columns={columns}
             data={tableData}
             title="Patient Data"
-            detailPanel={[
-              {
-                tooltip: 'Show Name',
-                render: rowData => {
-                  return (
-                    <div
-                      style={{
-                        paddingLeft: 30
-                      }}
-                    >
-                      {rowData.description}
-                    </div>
-                  )
-                },
-              }]}
-            options={{actionsColumnIndex: -1, sorting: true, filtering: filter, emptyRowsWhenPaging: false, pageSize: 10, addRowPosition: "first"}}
+            options={{actionsColumnIndex: -1, sorting: true, filtering: filter, emptyRowsWhenPaging: false, pageSize: 10, addRowPosition: "first", fontSize:  '12'}}
             actions={[
               {
                 icon:()=><Checkbox
@@ -167,7 +155,7 @@ const Scheduler = () => {
                     fetchData()
                     resolve()
                   }, [])
-              }),
+              })
             }}
           />
         </div>
