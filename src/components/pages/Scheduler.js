@@ -74,7 +74,7 @@ const Scheduler = () => {
     setFilter(!filter)
    }
 
-  const url = "https://gastro-mombasa.herokuapp.com/api/patients"
+  const url = "https://gastromombasa-server.onrender.com/api/patients"
 
   useEffect(() => {
     fetchData()

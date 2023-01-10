@@ -65,7 +65,7 @@ const SignInSide = () => {
 
     try {
       const { data } = await axios.post(
-        "https://gastro-mombasa.herokuapp.com/api/auth/login",
+        "https://gastromombasa-server.onrender.com/api/auth/login",
         { name, password },
         config
       );

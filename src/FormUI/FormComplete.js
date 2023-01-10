@@ -80,7 +80,7 @@ const FormComplete = () => {
                   }
 
 
-                  await axios.post('https://gastro-mombasa.herokuapp.com/api/patients/', data, axiosConfig).then((response) => {
+                  await axios.post('https://gastromombasa-server.onrender.com/api/patients', data, axiosConfig).then((response) => {
                           navigate("/success")
                    }).catch((error) => {
                       navigate("/failure")

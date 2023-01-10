@@ -22,7 +22,7 @@ export default function Write() {
       desc,
     };
     try {
-      const res = await axios.post("https://gastro-mombasa.herokuapp.com/api/posts/", newPost, config);
+      const res = await axios.post("https://gastromombasa-server.onrender.com/api/posts", newPost, config);
       window.location.replace("/blog/posts");
     } catch (err) {
       console.log(err)
