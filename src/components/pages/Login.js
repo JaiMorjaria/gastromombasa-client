@@ -65,7 +65,7 @@ const SignInSide = () => {
 
     try {
       const { data } = await axios.post(
-        "https://gastromombasa-server.onrender.com/api/auth/login",
+        `https://3lilcxi3ul7xuu2jfoqegqfnum0xxewu.lambda-url.ap-south-1.on.aws/api/auth/login`,
         { name, password },
         config
       );
