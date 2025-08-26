@@ -58,8 +58,7 @@ const SignInSide = () => {
 
     const config = {
       header: {
-        "Content-Type": "application/json",
-        "access-control-allow-origin": "*"
+        "Content-Type": "application/json"
       },
     };
 
