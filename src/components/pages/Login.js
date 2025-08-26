@@ -59,7 +59,12 @@ const SignInSide = () => {
     try {
       const { data } = await axios.post(
         `https://3lilcxi3ul7xuu2jfoqegqfnum0xxewu.lambda-url.ap-south-1.on.aws/api/auth/login`,
-        { name, password }
+        new URLSearchParams({ name, password }),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }
       );
 
       localStorage.setItem("authToken", data.token);
@@ -68,8 +73,8 @@ const SignInSide = () => {
       navigate(0)
 
     } catch (error) {
-      console.log("Err:", error.response.data.error)
-      setError(error.response.data.error);
+      console.log("Err:", error.response?.data?.error || 'Login failed')
+      setError(error.response?.data?.error || 'Login failed');
       setTimeout(() => {
         setError("");
       }, 5000);
