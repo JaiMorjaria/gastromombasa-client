@@ -53,33 +53,33 @@ const SignInSide = () => {
     }
   }, [authToken, navigate]);
 
-  const loginHandler = async (e) => {
-    e.preventDefault(); 
+    const loginHandler = async (e) => {
+      e.preventDefault(); 
 
-    try {
-      const { data } = await axios.post(
-        `https://3lilcxi3ul7xuu2jfoqegqfnum0xxewu.lambda-url.ap-south-1.on.aws/api/auth/login`,
-        new URLSearchParams({ name, password }),
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+      try {
+        const { data } = await axios.post(
+          `https://3lilcxi3ul7xuu2jfoqegqfnum0xxewu.lambda-url.ap-south-1.on.aws/api/auth/login`,
+          { name, password }, // Send as JSON object
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
           }
-        }
-      );
+        );
 
-      localStorage.setItem("authToken", data.token);
-      localStorage.setItem("name", data.name);
-      navigate("/scheduler")
-      navigate(0)
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("name", data.name);
+        navigate("/scheduler")
+        navigate(0)
 
-    } catch (error) {
-      console.log("Err:", error.response?.data?.error || 'Login failed')
-      setError(error.response?.data?.error || 'Login failed');
-      setTimeout(() => {
-        setError("");
-      }, 5000);
-    }
-  };
+      } catch (error) {
+        console.log("Err:", error.response?.data?.error || 'Login failed')
+        setError(error.response?.data?.error || 'Login failed');
+        setTimeout(() => {
+          setError("");
+        }, 5000);
+      }
+    };
 
   return (
     <Grid container component="main" className={classes.root}>
