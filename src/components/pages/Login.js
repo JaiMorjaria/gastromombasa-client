@@ -56,17 +56,10 @@ const SignInSide = () => {
   const loginHandler = async (e) => {
     e.preventDefault(); 
 
-    const config = {
-      header: {
-        "Content-Type": "application/json"
-      },
-    };
-
     try {
       const { data } = await axios.post(
         `https://3lilcxi3ul7xuu2jfoqegqfnum0xxewu.lambda-url.ap-south-1.on.aws/api/auth/login`,
-        { name, password },
-        config
+        { name, password }
       );
 
       localStorage.setItem("authToken", data.token);
