@@ -45,16 +45,24 @@ const theme = createTheme ({
 function App() {  
 
   return (
-    <ThemeProvider theme = {theme}>
+    <ThemeProvider theme={theme}>
       <Router>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/appointment' element={<Appointment />}/>
-          <PrivateRoute path ='/scheduler' element = {<Scheduler />}/>
-          <PrivateRoute path='/blog/create-post' element={<CreatePost />} />
+          <Route path='/appointment' element={<Appointment />} />
+          <Route path='/scheduler' element={
+            <PrivateRoute>
+              <Scheduler />
+            </PrivateRoute>
+          } />
+          <Route path='/blog/create-post' element={
+            <PrivateRoute>
+              <CreatePost />
+            </PrivateRoute>
+          } />
           <Route path='/success' element={<Success />} />
           <Route path='/failure' element={<Failure />} />
           <Route path='/blog/posts' element={<Blog />} />
